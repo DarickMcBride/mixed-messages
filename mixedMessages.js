@@ -3,16 +3,24 @@
 let potterData = require('./data/harryPotter.json');
 
 class message {
-    constructor(wands, houses) {
+    //fields
+    #houses = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin'];
+    #wands = [];
+    constructor() {
         const wandsData = potterData.map(item => item.Wand)
         const filteredWands = wandsData.filter(wand => wand !== 'Unknown' && wand !== '' && !wand.includes('Inherited'))
-        wands = filteredWands
-        houses = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
-        this.wands = wands
-        this.houses = houses
+        const wands = filteredWands
+        this.#wands = wands
+
     }
+
+    //methods
+    writeMessage() {
+        console.log(`Welcome to Hogwarts! Your have sorted into the ${this.#houses[0]} house. The wand you have been assigned is: ${this.#wands[0]}`)
+    }
+    
 }
 
 
 const message1 = new message();
-console.log(message1.wands)
+message1.writeMessage()
